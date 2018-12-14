@@ -1,9 +1,9 @@
 import { FormGroup, FormControl, Validators, ValidatorFn } from '@angular/forms';
 import 'reflect-metadata';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class ModelFormBuilder<T> {
-
-  constructor(){}
 
   public build(target: T): FormGroup {
     const fg = new FormGroup({});

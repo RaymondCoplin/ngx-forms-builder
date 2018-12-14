@@ -4,4 +4,4 @@ export { Min } from './min';
 export { Max } from './max';
 export { Pattern } from './pattern';
 export { CustomValidator } from './customValidator';
-export { ModelFormBuilder } from './model_form_builder';
+export { ModelFormBuilder } from '../services/model-form-builder.service';
