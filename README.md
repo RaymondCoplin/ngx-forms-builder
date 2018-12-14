@@ -1,15 +1,15 @@
-Ngx-form-builder
+Ngx-forms-builder
 =========
 
 A small library that adds validation with decorators and build angular forms.
 
 ## Installation
 
-  `npm install ngx-form-builder`
+  `npm install ngx-forms-builder`
 
 ## Usage
 
-    import { Required, Email, Pattern } from 'ngx-form-builder';
+    import { Required, Email, Pattern } from 'ngx-forms-builder';
 
     @Required()
     firstName: string;
