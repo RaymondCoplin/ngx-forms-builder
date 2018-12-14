@@ -9,22 +9,46 @@ A small library that adds validation with decorators and build angular forms.
 
 ## Usage
 
-    import { Required, Email, Pattern } from 'ngx-forms-builder';
+    import { Required, Email, Pattern, Min, Max, CustomValidator } from 'ngx-forms-builder';
 
-    @Required()
-    firstName: string;
+    export class Person {
 
-    @Required()
-    lastName: string;
+      @Required()
+      firstName: string;
 
-    @Email()
-    @Required()
-    email: string;
+      @Required()
+      lastName: string;
 
-    @Pattern(/^[.,_A-zÀ-ú0-9]*((-|\s)*[.,_A-zÀ-ú0-9])*$/)
-    address: string;
+      @Email()
+      @Required()
+      email: string;
 
-    //-------------------------------------------------------------
+      @Pattern(/^[.,_A-zÀ-ú0-9]*((-|\s)*[.,_A-zÀ-ú0-9])*$/)
+      address: string;
+
+      @Min(5)
+      @Max(1000)
+      apartmentNumber: number;
+
+      @CustomValidator(identificationValidator)
+      documentNumber: string;
+
+      constructor(firstName: string, lastName: string, email: string, address: string, apartmentNumber: number) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.address = address;
+        this.apartmentNumber = apartmentNumber;
+      }
+
+    }
+
+    /*-------------------------------------------------------------*/
+
+    import { Component, OnInit } from '@angular/core';
+    import { Person } from './person';
+    import { FormGroup } from '@angular/forms';
+    import { ModelFormBuilder } from 'ngx-forms-builder';
 
     @Component({
       selector: 'app-root',
@@ -32,17 +56,21 @@ A small library that adds validation with decorators and build angular forms.
     })
     export class AppComponent implements OnInit {
 
-      fb: ModelFormBuilder<Person> = new ModelFormBuilder();
       formGroup: FormGroup;
 
-      constructor() {}
+      constructor(private fb: ModelFormBuilder<Person>) {}
 
       ngOnInit() {
         const model = new Person('Raymond', 'Coplin', 'raymondcoplin@gmail.com', 'Calle Respaldo Costa Rica 8B', 22);
         this.formGroup = this.fb.build(model);
       }
 
+      log() {
+        console.log(this.formGroup.value);
+      }
+
     }
+
 
 ## Tests
 
