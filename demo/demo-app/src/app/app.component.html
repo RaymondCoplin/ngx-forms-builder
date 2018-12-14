@@ -1,0 +1,35 @@
+<h1>Ngx Forms Builder</h1>
+
+<form [formGroup]="formGroup" (submit)="log()">
+  <div>
+    <label>Nombre:</label>
+    <input type="text" formControlName="firstName" placeholder="Ingrese el nombre" />
+    <p *ngIf="formGroup.get('firstName').hasError('required')">El campo es requerido</p>
+  </div>
+  <div>
+    <label>Apellido:</label>
+    <input type="text" formControlName="lastName" placeholder="Ingrese el nombre" />
+    <p *ngIf="formGroup.get('lastName').hasError('required')">El campo es requerido</p>
+  </div>
+  <div>
+    <label>Correo:</label>
+    <input type="text" formControlName="email" placeholder="Ingrese el nombre" />
+    <p *ngIf="formGroup.get('email').hasError('required')">El campo es requerido</p>
+    <p *ngIf="formGroup.get('email').hasError('email')">El campo debe ser un correo</p>
+  </div>
+
+  <div>
+    <label>Address:</label>
+    <input type="text" formControlName="address" placeholder="Ingrese el address" />
+    <p *ngIf="formGroup.get('address').hasError('pattern')">El campo no puede contener caracteres especiales.</p>
+  </div>
+
+  <div>
+    <label>Apartment Number:</label>
+    <input type="text" formControlName="apartmentNumber" placeholder="Ingrese el numero de apartamento" />
+    <p *ngIf="formGroup.get('apartmentNumber').hasError('min')">El valor minimo es {{ formGroup.get('apartmentNumber').errors.get.min.min }}</p>
+    <p *ngIf="formGroup.get('apartmentNumber').hasError('max')">El valor maximo es {{ formGroup.get('apartmentNumber').errors.max.max }}</p>
+  </div>
+
+  <button type="submit">Submit</button>
+</form>
