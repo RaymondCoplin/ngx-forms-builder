@@ -8,11 +8,15 @@ export class ModelFormBuilder<T> {
   public build(target: T): FormGroup {
     const fg = new FormGroup({});
     for (const propertyKey in target) {
+
+      const decorators = Reflect.getMetadataKeys(target, propertyKey);
+      if (decorators.filter(x => x === 'exclude').length > 0) continue;
+      
       fg.addControl(propertyKey, new FormControl(target[propertyKey]));
       const validators: ValidatorFn[] = [];
 
-      const decorators = Reflect.getMetadataKeys(target, propertyKey);
-      decorators.forEach(decorator => {
+      for (const decorator of decorators) {
+
         switch (decorator) {
           case 'required': {
             validators.push(Validators.required);
@@ -43,9 +47,14 @@ export class ModelFormBuilder<T> {
             break;
           }
         }
-      });
 
-      fg.get(propertyKey).setValidators(validators);
+      }
+
+      const control = fg.get(propertyKey);
+      if(control) {
+        control.setValidators(validators);
+      }
+
     }
     return fg;
   }

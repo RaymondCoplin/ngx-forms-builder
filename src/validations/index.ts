@@ -4,4 +4,5 @@ export { Min } from './min';
 export { Max } from './max';
 export { Pattern } from './pattern';
 export { CustomValidator } from './customValidator';
+export { Exclude } from './exclude';
 export { ModelFormBuilder } from '../services/model-form-builder.service';
