@@ -1,6 +1,6 @@
 {
   "name": "ngx-forms-builder",
-  "version": "0.2.3",
+  "version": "0.2.2",
   "description": "A small library that adds validation with decorators and build angular forms.",
   "keywords": [
     "angular",
