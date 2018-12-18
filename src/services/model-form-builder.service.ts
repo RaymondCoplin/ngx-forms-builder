@@ -10,7 +10,7 @@ export class ModelFormBuilder<T> {
     for (const propertyKey in target) {
 
       const decorators = Reflect.getMetadataKeys(target, propertyKey);
-      if (decorators.filter(x => x === 'exclude').length > 0) continue;
+      if (decorators.indexOf('exclude') > 0) continue;
       
       fg.addControl(propertyKey, new FormControl(target[propertyKey]));
       const validators: ValidatorFn[] = [];
@@ -50,10 +50,7 @@ export class ModelFormBuilder<T> {
 
       }
 
-      const control = fg.get(propertyKey);
-      if(control) {
-        control.setValidators(validators);
-      }
+      fg.get(propertyKey).setValidators(validators);
 
     }
     return fg;
