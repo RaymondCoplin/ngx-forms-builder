@@ -1,6 +1,6 @@
 {
   "name": "ngx-forms-builder",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "A small library that adds validation with decorators and build angular forms.",
   "keywords": [
     "angular",
@@ -13,9 +13,10 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc && npm version patch",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postbuild": "cp README.md ./dist && cp package.json ./dist && cd ./dist && npm publish"
+    "postbuild": "cp README.md ./dist && cp package.json ./dist",
+    "buildPublish": "npm version patch && npm run build && cd ./dist && npm publish"
   },
   "repository": {
     "type": "git",
