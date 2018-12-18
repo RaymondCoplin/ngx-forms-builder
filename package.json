@@ -15,7 +15,7 @@
   "scripts": {
     "build": "tsc && npm version patch",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postbuild": "cp README.md ./dist && cp package.json ./dist"
+    "postbuild": "cp README.md ./dist && cp package.json ./dist && cd ./dist && npm publish"
   },
   "repository": {
     "type": "git",
