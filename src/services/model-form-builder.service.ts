@@ -15,45 +15,33 @@ export class ModelFormBuilder<T> {
       fg.addControl(propertyKey, new FormControl(target[propertyKey]));
       const validators: ValidatorFn[] = [];
 
-      for (const decorator of decorators) {
-
-        switch (decorator) {
-          case 'required': {
-            validators.push(Validators.required);
-            break;
-          }
-          case 'email': {
-            validators.push(Validators.email);
-            break;
-          }
-          case 'min': {
-            const min: number = Reflect.getMetadata(decorator, target, propertyKey);
-            validators.push(Validators.min(min));
-            break;
-          }
-          case 'max': {
-            const max: number = Reflect.getMetadata(decorator, target, propertyKey);
-            validators.push(Validators.max(max));
-            break;
-          }
-          case 'pattern': {
-            const pattern: string | RegExp = Reflect.getMetadata(decorator, target, propertyKey);
-            validators.push(Validators.pattern(pattern));
-            break;
-          }
-          case 'customValidator': {
-            const customValidator: ValidatorFn = Reflect.getMetadata(decorator, target, propertyKey);
-            validators.push(customValidator);
-            break;
-          }
-        }
-
-      }
+      decorators.map((decorator)=>{
+        let validator = this.getValidatorByType(decorator, target, propertyKey);
+        if(validator!== null) validators.push(validator);
+      });
 
       fg.get(propertyKey).setValidators(validators);
-
     }
     return fg;
   }
 
+   getValidatorByType(metadataKey: any, target: Object, propertyKey: string | symbol){
+      let 
+        validator : any,
+        metadataValue: ValidatorFn,
+        validatorsType : any = {
+        'required': ()=> Validators.required,
+        'email': ()=>  Validators.email,
+        'min' : (min : number)=>Validators.min(min),
+        'max' : (max : number)=> Validators.max(max),
+        'pattern' : (pattern : string | RegExp)=> Validators.pattern(pattern),
+        'customValidator' : (custom : ValidatorFn)=> custom,
+       };
+       
+       metadataValue = Reflect.getMetadata(metadataKey, target, propertyKey);
+       validator =  (metadataKey === 'design:type')? null : validatorsType[metadataKey](metadataValue);
+       return validator;
+   }
+
 }
+
