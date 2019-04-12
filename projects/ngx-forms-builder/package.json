@@ -1,0 +1,24 @@
+{
+  "name": "ngx-forms-builder",
+  "version": "0.4.0",
+  "description": "A small library that adds validation with decorators and build angular forms.",
+  "keywords": [
+    "angular",
+    "FormBuilder",
+    "forms",
+    "class-validator",
+    "decorators",
+    "angular7"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/raymondcoplin/ngx-forms-builder"
+  },
+  "author": "Raymond Coplin <raymondcoplin@gmail.com> (http://raymondcoplin.com)",
+  "license": "ISC",
+  "peerDependencies": {
+    "@angular/common": "^7.2.0",
+    "@angular/core": "^7.2.0",
+    "reflect-metadata": "^0.1.12"
+  }
+}

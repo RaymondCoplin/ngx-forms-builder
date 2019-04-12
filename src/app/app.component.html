@@ -1,0 +1,50 @@
+<div class="container">
+  <h1>Ngx Forms Builder</h1>
+
+  <form [formGroup]="formGroup" (submit)="onSubmit()">
+
+    <mat-form-field>
+      <input matInput formControlName="firstName" placeholder="First Name" />
+      <mat-error *ngIf="formGroup.get('firstName').hasError('required')">
+        First Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="lastName" placeholder="Last Name" />
+      <mat-error *ngIf="formGroup.get('lastName').hasError('required')">
+        Last Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="email" placeholder="Email" />
+      <mat-error *ngIf="formGroup.get('email').hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="formGroup.get('email').hasError('email')">
+        Email <strong>is not valid</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="address" placeholder="Address" />
+      <mat-error *ngIf="formGroup.get('address').hasError('pattern')">
+        Address <strong>is not valid</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="age" placeholder="Age" />
+      <mat-error *ngIf="formGroup.get('age').hasError('min')">
+        The min age is <strong>{{ formGroup.get('age').errors.min.min }}</strong>
+      </mat-error>
+      <mat-error *ngIf="formGroup.get('age').hasError('max')">
+        The max age is <strong>{{ formGroup.get('age').errors.max.max }}</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" [disabled]="formGroup.invalid">Submit</button>
+
+  </form>
+</div>
