@@ -4,7 +4,7 @@
 
 [![npm bundle size (minified + gzip)](https://img.shields.io/bundlephobia/minzip/ngx-forms-builder.svg)](https://bundlephobia.com/result?p=ngx-forms-builder) [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](/LICENSE)
 
-A small library that adds validation with decorators and build angular forms 📝
+A small library that adds validation with decorators and build angular forms 🅰📝
 
 ## Demo
 

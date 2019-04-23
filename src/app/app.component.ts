@@ -24,4 +24,8 @@ export class AppComponent implements OnInit {
       duration: 2000,
     });
   }
+
+  onReset() {
+    this.formGroup.reset();
+  }
 }

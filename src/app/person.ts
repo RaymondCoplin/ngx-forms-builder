@@ -1,5 +1,5 @@
 import { Required, Email, Pattern, Min, Max, Exclude, CustomValidator } from 'ngx-forms-builder';
-import { identificationValidator } from './identificationValidators';
+import { identificationValidator } from './validators/identification.validator';
 
 export class Person {
 

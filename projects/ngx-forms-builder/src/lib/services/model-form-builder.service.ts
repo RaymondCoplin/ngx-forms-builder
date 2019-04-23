@@ -1,12 +1,13 @@
 import 'reflect-metadata';
 import { Injectable } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn } from '@angular/forms';
+import { AbstractControlOptions } from '@angular/forms/src/model';
 
 @Injectable()
 export class ModelFormBuilder<T> {
 
-  public build(target: T): FormGroup {
-    const fg = new FormGroup({});
+  public build(target: T, options?: AbstractControlOptions | null): FormGroup {
+    const fg = new FormGroup({}, options);
 
     for (const propertyKey of Object.keys(target)) {
 
