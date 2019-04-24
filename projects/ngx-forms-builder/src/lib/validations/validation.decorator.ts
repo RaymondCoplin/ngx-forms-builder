@@ -26,4 +26,3 @@ export const Min = createValidationDecoratorWithValue<number>(Validations.MIN);
 export const Max = createValidationDecoratorWithValue<number>(Validations.MAX);
 export const Pattern = createValidationDecoratorWithValue<RegExp | string>(Validations.PATTERN);
 export const CustomValidator = createValidationDecoratorWithValue<ValidatorFn>(Validations.CUSTOMVALIDATOR);
-export const JP = createValidationDecoratorWithValue<RegExp | string>(Validations.PATTERN);
