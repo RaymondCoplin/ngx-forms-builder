@@ -1,7 +1,6 @@
 import 'reflect-metadata';
 import { Injectable } from '@angular/core';
-import { FormGroup, FormControl, Validators, ValidatorFn } from '@angular/forms';
-import { AbstractControlOptions } from '@angular/forms/src/model';
+import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControlOptions } from '@angular/forms';
 
 @Injectable()
 export class ModelFormBuilder<T> {
