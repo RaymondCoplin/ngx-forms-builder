@@ -12,7 +12,9 @@ Try out our [demo on Stackblitz](https://ngx-forms-builder-example.stackblitz.io
 
 ## Install
 
-  `npm install ngx-forms-builder --save`
+```bash
+npm install ngx-forms-builder --save
+```
   
 ## Setup
 
@@ -36,71 +38,72 @@ export class YourAppComponent {}
 ```
 
 ## Usage
+```typescript
+import { Required, Email, Pattern, Min, Max, CustomValidator } from 'ngx-forms-builder';
 
-    import { Required, Email, Pattern, Min, Max, CustomValidator } from 'ngx-forms-builder';
+export class Person {
 
-    export class Person {
+  @Required()
+  firstName: string;
 
-      @Required()
-      firstName: string;
+  @Required()
+  lastName: string;
 
-      @Required()
-      lastName: string;
+  @Email()
+  @Required()
+  email: string;
 
-      @Email()
-      @Required()
-      email: string;
+  @Pattern(/^[.,_A-zÀ-ú0-9]*((-|\s)*[.,_A-zÀ-ú0-9])*$/)
+  address: string;
 
-      @Pattern(/^[.,_A-zÀ-ú0-9]*((-|\s)*[.,_A-zÀ-ú0-9])*$/)
-      address: string;
+  @Min(1)
+  @Max(100)
+  age: number;
 
-      @Min(1)
-      @Max(100)
-      age: number;
+  @Exclude()
+  secretPassword: string;
 
-      @Exclude()
-      secretPassword: string;
+  @CustomValidator(identificationValidator)
+  documentNumber: string;
 
-      @CustomValidator(identificationValidator)
-      documentNumber: string;
+  constructor(firstName: string, lastName: string, email: string, age: number, address: string, secretPassword: string) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+    this.age = age;
+    this.address = address;
+    this.secretPassword = secretPassword;
+  }
 
-      constructor(firstName: string, lastName: string, email: string, age: number, address: string, secretPassword: string) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.age = age;
-        this.address = address;
-        this.secretPassword = secretPassword;
-      }
+}
 
-    }
+/*-------------------------------------------------------------*/
 
-    /*-------------------------------------------------------------*/
+import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { ModelFormBuilder } from 'ngx-forms-builder';
+import { Person } from './person';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
-    import { Component, OnInit } from '@angular/core';
-    import { FormGroup } from '@angular/forms';
-    import { ModelFormBuilder } from 'ngx-forms-builder';
-    import { Person } from './person';
-    import { MatSnackBar } from '@angular/material/snack-bar';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent implements OnInit {
+  formGroup: FormGroup;
 
-    @Component({
-      selector: 'app-root',
-      templateUrl: './app.component.html',
-      styleUrls: ['./app.component.css']
-    })
-    export class AppComponent implements OnInit {
-      formGroup: FormGroup;
+  constructor(private fb: ModelFormBuilder<Person>, private snackBar: MatSnackBar) { }
 
-      constructor(private fb: ModelFormBuilder<Person>, private snackBar: MatSnackBar) { }
+  ngOnInit() {
+    const model = new Person('Raymond', 'Coplin', 'raymondcoplin@gmail.com', 23, 'Wall Street, New York', '');
+    this.formGroup = this.fb.build(model);
+  }
 
-      ngOnInit() {
-        const model = new Person('Raymond', 'Coplin', 'raymondcoplin@gmail.com', 23, 'Wall Street, New York', '');
-        this.formGroup = this.fb.build(model);
-      }
-
-      onSubmit() {
-        this.snackBar.open(`${this.formGroup.get('firstName').value} ${this.formGroup.get('lastName').value}`, 'Saved', {
-          duration: 2000,
-        });
-      }
-    }
+  onSubmit() {
+    this.snackBar.open(`${this.formGroup.get('firstName').value} ${this.formGroup.get('lastName').value}`, 'Saved', {
+      duration: 2000,
+    });
+  }
+}
+```
