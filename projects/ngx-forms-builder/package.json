@@ -19,6 +19,6 @@
   "peerDependencies": {
     "@angular/common": "^8.2.2",
     "@angular/core": "^8.2.2",
-    "reflect-metadata": "^8.2.2"
+    "reflect-metadata": "^0.1.13"
   }
 }
