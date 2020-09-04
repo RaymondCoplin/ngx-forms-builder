@@ -22,7 +22,7 @@
     "@angular/platform-browser-dynamic": "~8.2.2",
     "@angular/router": "~8.2.2",
     "core-js": "^2.5.4",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.13.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~6.5.2",
     "tslib": "^1.9.0",
